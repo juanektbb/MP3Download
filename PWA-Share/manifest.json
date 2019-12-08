@@ -1,0 +1,30 @@
+{
+  "short_name": "Sharing Demo",
+  "name": "Web Target Sharing Demo",
+  "icons": [
+    {
+      "src": "large.png",
+      "type": "image/png",
+      "sizes": "310x310"
+    },
+    {
+      "src": "large.png",
+      "type": "image/png",
+      "sizes": "310x310"
+    }
+  ],
+  "share_target":
+  {
+    "action": "/download/",
+    "params":
+    {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "start_url": "/PWA-Share/",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "theme_color": "#ffffff"
+}
