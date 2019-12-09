@@ -15,7 +15,7 @@
   ],
   "share_target":
   {
-    "action": "/download/",
+    "action": "/download/index.html",
     "params":
     {
       "title": "title",
