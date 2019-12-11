@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test landing page</title>
+
+<script>
+	var parsedUrl = new URL(window.location.toString());
+
+	var num1 = parsedUrl.searchParams.get('name');
+	var num2 = parsedUrl.searchParams.get('description');
+	var num3 = parsedUrl.searchParams.get('link');
+
+	document.getElementById("num1").innerHTML = 'Title shared: ' + num1;
+	document.getElementById("num2").innerHTML = 'Text shared: ' + num2;
+	document.getElementById("num3").innerHTML = 'URL shared: ' + num3;
+</script>
+
+</head>
+<body>
+
+<div id="num1"></div>
+<div id="num2"></div>
+<div id="num3"></div>
+
+
+   <input type="button" id='script' name="scriptbutton" value="Run Script " onclick="goPython()">
+
+
+    <script>
+        function goPython(){
+
+        	var xhr = new XMLHttpRequest();
+			xhr.open('GET', './test.html');
+			xhr.send(null);
+			xhr.onreadystatechange = function () {
+  var DONE = 4; // readyState 4 means the request is done.
+  var OK = 200; // status 200 is a successful return.
+  if (xhr.readyState === DONE) {
+    if (xhr.status === OK) {
+      console.log(xhr.responseText); // 'This is the returned text.'
+    } else {
+      console.log('Error: ' + xhr.error); // An error occurred during the request.
+    }
+  }
+};
+
+        }
+    </script>
+
+
+
+
+</body>
+</html> 
+
+
