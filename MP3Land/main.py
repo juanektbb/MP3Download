@@ -2,14 +2,18 @@
 import youtube_dl
 import sys
 
-from flask import Flask, Response
+from flask import Flask, Response, render_template
 from flask import send_file
+from jinja2 import Template
+
+
+
 app = Flask(__name__)
 
 
 
 @app.route('/')
-def hello_world():
+def mainland():
 
 	ydl_opts = {
 		'forcetitle': True,
@@ -24,11 +28,15 @@ def hello_world():
 	    'outtmpl': './helloWorld.mp3'
 	}
 
-	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-		ydl.download(['https://www.youtube.com/watch?v=5ytzbr4SiKE'])
+	# with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+	# 	ydl.download(['https://www.youtube.com/watch?v=5ytzbr4SiKE'])
+
+	template = []
+
+	return render_template('index.html', test1 = template)
 
 
-	return send_file('./helloWorld.mp3', as_attachment=True)
+	#send_file('./helloWorld.mp3', as_attachment=True)
 
 
 
@@ -57,9 +65,9 @@ else:
 
 
 
-
 if __name__ == '__main__':
-    app.run()
+	app.run(debug=True,host='127.0.0.1',port=5001)
+
 
 
 
