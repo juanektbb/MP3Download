@@ -1,20 +1,32 @@
 #!/usr/bin/env python3
 import youtube_dl
 import sys
+import datetime
+import time
 
-from flask import Flask, Response, render_template
+# https://pypi.org/project/tinytag/
+# https://eyed3.readthedocs.io/en/latest/
+
+
+from tinytag import TinyTag
+
+
+from flask import Flask, Response, render_template, request
 from flask import send_file
 from jinja2 import Template
 
+import random
 
 
 app = Flask(__name__)
 
 
-
 @app.route('/')
 def mainland():
 
+	fileName = getRandomString() + ".mp3"
+
+	# Settings for downloading
 	ydl_opts = {
 		'forcetitle': True,
 	    'format': 'bestaudio/best',
@@ -25,18 +37,40 @@ def mainland():
 	    }],
 	    'noplaylist' : True,
 	    'progress_hooks': [my_hook],
-	    'outtmpl': './helloWorld.mp3'
+	    'outtmpl': './' + fileName
 	}
 
-	# with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-	# 	ydl.download(['https://www.youtube.com/watch?v=5ytzbr4SiKE'])
+	# Download from youtube
+	# youtube_dl.YoutubeDL(ydl_opts).download(['https://www.youtube.com/watch?v=5ytzbr4SiKE'])
+
+
+	# USE TINY TAG TO GET ATTRIBUTES
+	# fileTags = TinyTag.get(fileName)
+	# print('This track is by %s.' % fileTags.artist)
+
 
 	template = []
-
 	return render_template('index.html', test1 = template)
 
-
 	#send_file('./helloWorld.mp3', as_attachment=True)
+
+
+
+
+
+@app.route("/tags", methods=['POST','GET'])
+def tags():
+
+
+	songTitle = request.form.get('songTitle')
+	songTitle = songTitle.capitalize()
+
+
+	print(username)
+
+	return Response(username)
+
+
 
 
 
@@ -48,6 +82,32 @@ def my_hook(d):
 
 # #Download MP3 from Youtube
 # def downloadSong(link):
+
+
+def upperArtist(string):
+	
+
+
+
+# RETURN RANDOM STRING
+def getRandomString():
+	abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	retString = ""
+
+	now = str(time.time()).split(".")
+
+	for i in range(2):
+		rand = random.randrange(0, len(abc))
+		retString += abc[rand]
+
+	retString += now[0]
+	return retString
+
+
+
+
+
+
 
 
 
@@ -66,7 +126,7 @@ else:
 
 
 if __name__ == '__main__':
-	app.run(debug=True,host='127.0.0.1',port=5001)
+	app.run(debug=True,host='127.0.0.1',port=5002)
 
 
 
