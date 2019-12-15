@@ -8,6 +8,7 @@ import time
 # https://eyed3.readthedocs.io/en/latest/
 
 
+import eyed3
 from tinytag import TinyTag
 
 
@@ -49,8 +50,7 @@ def mainland():
 	# print('This track is by %s.' % fileTags.artist)
 
 
-	template = []
-	return render_template('index.html', test1 = template)
+	return render_template('index.html', fileName = fileName)
 
 	#send_file('./helloWorld.mp3', as_attachment=True)
 
@@ -61,14 +61,40 @@ def mainland():
 @app.route("/tags", methods=['POST','GET'])
 def tags():
 
+	fileName = request.form.get('fileName')
 
 	songTitle = request.form.get('songTitle')
 	songTitle = songTitle.capitalize()
 
+	songArtist = request.form.get('songArtist')
+	songArtist = upperArtist(songTitle)
 
-	print(username)
+	songGenre = request.form.get('songGenre')
+	songAlbum = "Musica JD"
 
-	return Response(username)
+	# LOAD THIS FILE
+	audio = eyed3.load(fileName)
+
+	audio.initTag()
+
+	
+
+	audio.tag.title = unicode(songTitle)
+	audio.tag.artist = unicode(songArtist)
+	audio.tag.album_artist = unicode(songArtist)
+
+	# audio.tag.genre = u"ccc"
+	audio.tag.album = unicode(songAlbum)
+	audio.tag.track = u""
+
+	audio.tag.images.set(3, open('music.png','rb').read(), 'image/png')
+	audio.tag.save()
+
+
+
+
+
+	return Response(songGenre)
 
 
 
@@ -84,9 +110,25 @@ def my_hook(d):
 # def downloadSong(link):
 
 
-def upperArtist(string):
-	
 
+
+
+
+
+
+
+# RETURN ARTIST AS NICE STRING
+def upperArtist(string):
+	newList = list(string.split(" "))
+	newString = ""
+
+	for i in newList:
+		if((i == "ft") or (i == "ft.")):
+			newString += i + " "
+		else:
+			newString += i.capitalize() + " "
+
+	return newString.strip()
 
 
 # RETURN RANDOM STRING
