@@ -1,0 +1,13 @@
+Click==7.0
+eyeD3==0.8.11
+Flask==1.1.1
+gunicorn==20.0.4
+itsdangerous==1.1.0
+Jinja2==2.10.3
+MarkupSafe==1.1.1
+pkg-resources==0.0.0
+python-magic==0.4.15
+six==1.13.0
+tinytag==1.2.2
+Werkzeug==0.16.0
+youtube-dl==2019.11.28
