@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 import youtube_dl
-import sys
-import datetime
-import time
+import sys, datetime, time, random
 
 # https://pypi.org/project/tinytag/
 # https://eyed3.readthedocs.io/en/latest/
@@ -16,7 +14,6 @@ from flask import Flask, Response, render_template, request
 from flask import send_file
 from jinja2 import Template
 
-import random
 
 
 app = Flask(__name__)
@@ -91,9 +88,6 @@ def tags():
 	audio.tag.save()
 
 
-
-
-
 	return Response(songGenre)
 
 
@@ -104,16 +98,6 @@ def tags():
 def my_hook(d):
     if d['status'] == 'finished':
         print('Done downloading, now converting ...')
-
-
-# #Download MP3 from Youtube
-# def downloadSong(link):
-
-
-
-
-
-
 
 
 
@@ -149,20 +133,9 @@ def getRandomString():
 
 
 
+def returnVideoID(video): 
 
 
-
-
-
-lenArg = len(sys.argv)
-
-mp3Retrived = ''
-
-if lenArg >= 2:
-	linkYT = sys.argv[1]
-	#mp3Retrive = downloadSong(linkYT)
-else:
-	print("No URL provided")
 
 
 

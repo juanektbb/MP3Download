@@ -1,51 +1,119 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Test landing page</title>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Roboto&display=swap" rel="stylesheet"> 
 
-<script>
+<title>MP3Download</title>
 
-</script>
+
 
 </head>
 <body>
 
 
+<style>
+  *{
+    box-sizing: border-box;
+  }
+  body{
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    background-color: #25293b;
+
+  }
+  h1{
+    font-family: 'Arvo', serif;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0;
+  }
+  h5{
+    text-align: center;
+    margin-top: 0;
+  }
+  h5 span{
+    color: #c90000;
+  }
+  .preview-box{
+    width: 300px;
+    margin: 40px auto 10px;
+  }
+  .preview-box img{
+    width: 100%;
+    border: 1px #c5ced1 solid;
+  }
+  .preview-box p{
+    text-align: center;
+    font-size: 12px;
+    color: #c5ced1;
+  }
+
+
+  .form-box{
+    width: 300px;
+    margin: 40px auto;
+    text-align: center;
+  }
+
+
+  .input-box{
+    margin-bottom: 12px;
+  }
+
+  .input-box input{
+    width: 100%;
+    border-radius: 2px;
+    border: #b3b3b3 solid 1px;
+    padding: 5px;
+  }
+
+  .input-button{
+    width: 100px;
+    margin: 20px auto 0;
+    background-color: #52ab4f;
+    padding: 8px;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+  }
+  .input-button:hover{
+    background-color: #3b7a43;
+  }
+</style>
 
 
 
 
+<h1>MP3Download</h1>
+<h5>Download any <span>Youtube</span> video as .mp3</h5>
 
-<form action="/tags" method="POST">
-  <input type="text" name="fileName" placeholder="{{ fileName }}">
-
-
-  <div>
-    <input type="text" name="songTitle" placeholder="Title">
-  </div>
-
-
-  <div>
-    <input type="text" name="songArtist" placeholder="Artist">
-  </div>
-    
-  
-  <div>
-    <input type="text" name="songGenre" placeholder="Genre">
-  </div>
-    
-    
-
-    <!-- <input type="text" name="songAlbum"> -->
-
-    <input type="submit" value="Save">
-
-</form>
+<div class="preview-box">
+  <img src="http://img.youtube.com/vi/myKJ4C_sG18/maxresdefault.jpg">
+  <p>This an example of a exmaple of a youtube title here some more text xcd</p>  
+</div>
 
 
 
+<div class="form-box">
+  <form action="/tags" method="POST">
+    <input type="hidden" name="fileName" value="{{ fileName }}">
 
+    <div class="input-box">
+      <input type="text" name="songTitle" placeholder="Title">
+    </div>
 
+    <div class="input-box">
+      <input type="text" name="songArtist" placeholder="Artist">
+    </div>
+      
+    <div class="input-box">
+      <input type="text" name="songGenre" placeholder="Genre">
+    </div>
+
+    <input type="submit" class="input-button" value="Get MP3">
+  </form>
+</div>
 
 </body>
 </html> 
