@@ -39,20 +39,4 @@ audio = eyed3.load("./helloWorld.mp3")
 
 video = "https://www.youtube.com/watch?v=5ytzbr4SiKE"
 
-from urllib import request, parse 
-from urllib.parse import parse_qs
 
-
-parsed = parse.urlparse(video)
-video_id = parse_qs(parsed.query)['v'][0]
-
-resp = request.urlopen(video)
-data = resp.read()
-decode_data = data.decode("UTF-8")
-
-video_title = decode_data.split("</title>")[0].split("<title>")[1].split(" - YouTube")[0]
-
-print(video_id)
-
-
-print(title1)

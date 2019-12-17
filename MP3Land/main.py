@@ -5,6 +5,8 @@ import sys, datetime, time, random
 # https://pypi.org/project/tinytag/
 # https://eyed3.readthedocs.io/en/latest/
 
+from urllib import request, parse 
+from urllib.parse import parse_qs
 
 import eyed3
 from tinytag import TinyTag
@@ -133,7 +135,29 @@ def getRandomString():
 
 
 
-def returnVideoID(video): 
+
+""" ***********************************
+	FUNCTIONS FOR VIDEO INFORMATION
+*********************************** """
+# RETURN VIDEO ID
+def returnVideoID(video):
+	# Request video info and parse it 
+	parsed = parse.urlparse(video)
+	video_id = parse_qs(parsed.query)['v'][0]
+	return video_id
+
+
+# RETURN VIDEO TITLE
+def returnVideoTitle(video):
+	# Request video and scrape data
+	resp = request.urlopen(video)
+	data = resp.read()
+	decode_data = data.decode("UTF-8")
+	
+	# Substring what is found between title tags
+	video_title = decode_data.split("</title>")[0].split("<title>")[1].split(" - YouTube")[0]
+	return video_title
+
 
 
 
@@ -141,7 +165,7 @@ def returnVideoID(video):
 
 
 if __name__ == '__main__':
-	app.run(debug=True,host='127.0.0.1',port=5002)
+	app.run(debug=True,host='127.0.0.1')
 
 
 
