@@ -48,8 +48,8 @@ def mainland():
 	# fileTags = TinyTag.get(fileName)
 	# print('This track is by %s.' % fileTags.artist)
 
-
-	return render_template('index.html', fileName = fileName)
+	return Response("hello yeahss")
+	#return render_template('index.html', fileName = fileName)
 
 	#send_file('./helloWorld.mp3', as_attachment=True)
 
@@ -165,7 +165,7 @@ def returnVideoTitle(video):
 
 
 if __name__ == '__main__':
-	app.run(debug=True,host='127.0.0.1')
+	app.run(debug=True,host='127.0.0.1',port=8000)
 
 
 

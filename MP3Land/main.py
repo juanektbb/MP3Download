@@ -48,8 +48,8 @@ def mainland():
 	# fileTags = TinyTag.get(fileName)
 	# print('This track is by %s.' % fileTags.artist)
 
-
-	return render_template('index.html', fileName = fileName)
+	return Response("hello yeahss")
+	#return render_template('index.html', fileName = fileName)
 
 	#send_file('./helloWorld.mp3', as_attachment=True)
 
