@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import youtube_dl
-import sys, datetime, time, random
+import sys, datetime, time, random, os
 
 # https://pypi.org/project/tinytag/
 # https://eyed3.readthedocs.io/en/latest/
