@@ -1,1 +1,1 @@
-web: python3 main.py 8000
+web: python3 main.py 5000
