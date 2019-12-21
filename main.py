@@ -24,6 +24,9 @@ app = Flask(__name__)
 @app.route('/')
 def mainland():
 
+
+	video_url = "https://www.youtube.com/watch?v=5ytzbr4SiKE"
+
 	fileName = getRandomString() + ".mp3"
 
 	# Settings for downloading
@@ -40,6 +43,9 @@ def mainland():
 	    'outtmpl': './' + fileName
 	}
 
+
+
+
 	# Download from youtube
 	# youtube_dl.YoutubeDL(ydl_opts).download(['https://www.youtube.com/watch?v=5ytzbr4SiKE'])
 
@@ -48,8 +54,7 @@ def mainland():
 	# fileTags = TinyTag.get(fileName)
 	# print('This track is by %s.' % fileTags.artist)
 
-	return Response("hello yeahss")
-	#return render_template('index.html', fileName = fileName)
+	return render_template('index.html', fileName = fileName)
 
 	#send_file('./helloWorld.mp3', as_attachment=True)
 
