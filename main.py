@@ -1,31 +1,32 @@
 #!/usr/bin/env python3
-import youtube_dl
 import sys, datetime, time, random, os
-
-# https://pypi.org/project/tinytag/
-# https://eyed3.readthedocs.io/en/latest/
 
 from urllib import request, parse 
 from urllib.parse import parse_qs
 
 import eyed3
-from tinytag import TinyTag
+import youtube_dl
 
-
-from flask import Flask, Response, render_template, request
-from flask import send_file
+from flask import Flask, Response, render_template, request as requestflask, send_file
 from jinja2 import Template
 
-
+# https://pypi.org/project/tinytag/
+# https://eyed3.readthedocs.io/en/latest/
 
 app = Flask(__name__)
-
 
 @app.route('/')
 def mainland():
 
+	return render_template("land.html")
+
+
+@app.route('/video')
+def videoland():
 
 	video_url = "https://www.youtube.com/watch?v=5ytzbr4SiKE"
+	video_id = returnVideoID(video_url)
+	video_title = returnVideoTitle(video_url)
 
 	fileName = getRandomString() + ".mp3"
 
@@ -39,7 +40,6 @@ def mainland():
 	        'preferredquality': '192',
 	    }],
 	    'noplaylist' : True,
-	    'progress_hooks': [my_hook],
 	    'outtmpl': './' + fileName
 	}
 
@@ -49,62 +49,62 @@ def mainland():
 	# Download from youtube
 	# youtube_dl.YoutubeDL(ydl_opts).download(['https://www.youtube.com/watch?v=5ytzbr4SiKE'])
 
-
-	# USE TINY TAG TO GET ATTRIBUTES
-	# fileTags = TinyTag.get(fileName)
-	# print('This track is by %s.' % fileTags.artist)
-
-	return render_template('index.html', fileName = fileName)
-
-	#send_file('./helloWorld.mp3', as_attachment=True)
+	return render_template('index.html', 
+		fileName = fileName,
+		videoUrl = video_url,
+		videoId = video_id,
+		videoTitle = video_title
+	)
 
 
+# ENDPOINT FOR DOWNLOADING
+@app.route("/download", methods=['POST','GET'])
+def download():
 
+	fileName = requestflask.form.get('fileName')
 
-
-@app.route("/tags", methods=['POST','GET'])
-def tags():
-
-	fileName = request.form.get('fileName')
-
-	songTitle = request.form.get('songTitle')
+	songTitle = requestflask.form.get('songTitle')
 	songTitle = songTitle.capitalize()
 
-	songArtist = request.form.get('songArtist')
+	songArtist = requestflask.form.get('songArtist')
 	songArtist = upperArtist(songTitle)
 
-	songGenre = request.form.get('songGenre')
+	songGenre = requestflask.form.get('songGenre')
 	songAlbum = "Musica JD"
 
 	# LOAD THIS FILE
-	audio = eyed3.load(fileName)
+	try:
+		audio = eyed3.load(fileName)
+		audio.initTag()
 
-	audio.initTag()
+		audio.tag.title = unicode(songTitle)
+		audio.tag.artist = unicode(songArtist)
+		audio.tag.album_artist = unicode(songArtist)
 
-	
+		# audio.tag.genre = u"ccc"
+		audio.tag.album = unicode(songAlbum)
+		audio.tag.track = u""
 
-	audio.tag.title = unicode(songTitle)
-	audio.tag.artist = unicode(songArtist)
-	audio.tag.album_artist = unicode(songArtist)
+		audio.tag.images.set(3, open('music.png','rb').read(), 'image/png')
+		audio.tag.save()
 
-	# audio.tag.genre = u"ccc"
-	audio.tag.album = unicode(songAlbum)
-	audio.tag.track = u""
+		os.rename(fileName, songTitle+".mp3")
 
-	audio.tag.images.set(3, open('music.png','rb').read(), 'image/png')
-	audio.tag.save()
+		send_file(songTitle+".mp3", as_attachment=True)
 
-
-	return Response(songGenre)
-
-
-
-
+	except IOError:
+		return Response("Wrong")
 
 
-def my_hook(d):
-    if d['status'] == 'finished':
-        print('Done downloading, now converting ...')
+
+
+
+
+
+
+
+
+
 
 
 
@@ -137,10 +137,6 @@ def getRandomString():
 	return retString
 
 
-
-
-
-
 """ ***********************************
 	FUNCTIONS FOR VIDEO INFORMATION
 *********************************** """
@@ -163,25 +159,8 @@ def returnVideoTitle(video):
 	video_title = decode_data.split("</title>")[0].split("<title>")[1].split(" - YouTube")[0]
 	return video_title
 
+""" ******************************* """
 
-
-
-
-
-
+# RUN FLASK APP
 if __name__ == '__main__':
 	app.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
-
-
-
-
-
-
-
-
-
-
-
-
-
-

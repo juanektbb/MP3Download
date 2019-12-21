@@ -89,14 +89,14 @@
 <h5>Download any <span>Youtube</span> video as .mp3</h5>
 
 <div class="preview-box">
-  <img src="http://img.youtube.com/vi/myKJ4C_sG18/maxresdefault.jpg">
-  <p>This an example of a exmaple of a youtube title here some more text xcd</p>  
+  <img src="http://img.youtube.com/vi/{{ videoId }}/maxresdefault.jpg">
+  <p>{{ videoTitle }}</p>  
 </div>
 
 
 
 <div class="form-box">
-  <form action="/tags" method="POST">
+  <form action="/download" method="POST">
     <input type="hidden" name="fileName" value="{{ fileName }}">
 
     <div class="input-box">
