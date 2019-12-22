@@ -15,7 +15,7 @@
   ],
   "share_target":
   {
-    "action": "/download/index.html",
+    "action": "/video",
     "params":
     {
       "title": "title",
@@ -23,7 +23,7 @@
       "url": "url"
     }
   },
-  "start_url": "/PWA-Share/",
+  "start_url": "/",
   "background_color": "#ffffff",
   "display": "standalone",
   "theme_color": "#ffffff"
