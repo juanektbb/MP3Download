@@ -3,12 +3,12 @@
   "name": "Web Target Sharing Demo",
   "icons": [
     {
-      "src": "large.png",
+      "src": "../images/large.png",
       "type": "image/png",
       "sizes": "310x310"
     },
     {
-      "src": "large.png",
+      "src": "../images/large.png",
       "type": "image/png",
       "sizes": "310x310"
     }

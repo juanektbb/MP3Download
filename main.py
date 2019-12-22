@@ -12,6 +12,7 @@ from jinja2 import Template
 
 # https://pypi.org/project/tinytag/
 # https://eyed3.readthedocs.io/en/latest/
+# https://chodounsky.net/2019/03/24/progressive-web-application-as-a-share-option-in-android/
 
 app = Flask(__name__)
 
