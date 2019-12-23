@@ -19,7 +19,19 @@ app = Flask(__name__)
 @app.route('/')
 def mainland():
 
-	return render_template("land.html")
+	return render_template("land.html");
+
+
+
+
+
+
+@app.route('/sw.js', methods=['GET'])
+def sw():
+    return app.send_static_file('service-worker.js')
+
+
+
 
 
 @app.route('/video')
