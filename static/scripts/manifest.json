@@ -1,5 +1,5 @@
 {
-  "short_name": "Sharing Demo",
+  "short_name": "MP3Downloader",
   "name": "Web Target Sharing Demo",
   "icons": [
     {
@@ -16,6 +16,8 @@
   "share_target":
   {
     "action": "/video",
+    "method": "POST",
+    "enctype": "multipart/form-data",
     "params":
     {
       "title": "title",
