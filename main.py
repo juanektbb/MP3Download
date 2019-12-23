@@ -37,7 +37,10 @@ def serviceworker():
 @app.route('/video', methods=['POST'])
 def videoland():
 
-	uri = requestflask.path;
+	tuu = "noothing"
+
+	if requestflask.method == "POST":
+		tuu = requestflask.form.get("title") + requestflask.form.get("text") + requestflask.form.get("url")
 
 	video_url = "https://www.youtube.com/watch?v=5ytzbr4SiKE"
 	video_id = returnVideoID(video_url)
@@ -69,7 +72,7 @@ def videoland():
 		videoUrl = video_url,
 		videoId = video_id,
 		videoTitle = video_title,
-		uri = uri
+		uri = tuu
 	)
 
 
