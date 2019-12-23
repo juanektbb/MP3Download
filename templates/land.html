@@ -3,8 +3,16 @@
 	<head>
 		<title>PWD Share</title>
 		
+<!-- 		<script src="{{ url_for('static', filename='scripts/service-worker.js') }}"> -->
+
+
+		<script>console.log("test1");
+			console.log(headers.get('Service-Worker-Allowed'));
+			console.log("test");
+		</script>
 
 		<script>
+			console.log("land");
 			if ('serviceWorker' in navigator) {
 			    navigator.serviceWorker.register("{{ url_for('static', filename='scripts/service-worker.js') }}")
 			      .then(function(reg){
@@ -19,7 +27,7 @@
 
 	</head>
 	<body>
-		<h1>Hello World</h1>
+		<h1>Hello World</h1>s
 	</body>
 </html>
 
