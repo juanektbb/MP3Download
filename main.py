@@ -25,17 +25,19 @@ def mainland():
 
 
 
-
+# Supportive route to get Service Worker
 @app.route('/sw.js', methods=['GET'])
-def sw():
+def serviceworker():
     return app.send_static_file('service-worker.js')
 
 
 
 
 
-@app.route('/video')
+@app.route('/video', methods=['POST'])
 def videoland():
+
+	uri = requestflask.path;
 
 	video_url = "https://www.youtube.com/watch?v=5ytzbr4SiKE"
 	video_id = returnVideoID(video_url)
@@ -66,7 +68,8 @@ def videoland():
 		fileName = fileName,
 		videoUrl = video_url,
 		videoId = video_id,
-		videoTitle = video_title
+		videoTitle = video_title,
+		uri = uri
 	)
 
 
