@@ -48,9 +48,9 @@ def videoland():
 	video_url = ""
 	title_pwa = ""
 
-	# if requestflask.method == "POST":
-	# 	video_url = requestflask.form.get("text")
-	# 	title_pwa = requestflask.form.get("title")
+	if requestflask.method == "POST":
+		video_url = requestflask.form.get("text")
+		title_pwa = requestflask.form.get("title")
 
 
 	if video_url == "":
@@ -81,6 +81,8 @@ def videoland():
 
 		video_id = returnVideoID(video_url)
 		video_title = returnVideoTitle(video_url)
+
+		
 
 		fileName = getRandomString() + ".mp3"
 
