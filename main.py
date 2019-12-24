@@ -2,7 +2,7 @@
 import sys, datetime, time, random, os
 
 from urllib import request, parse 
-from urllib.parse import parse_qs
+from urllib.parse import parse_qs, urlparse
 
 import eyed3
 import youtube_dl
@@ -16,13 +16,10 @@ from jinja2 import Template
 
 app = Flask(__name__)
 
+# 
 @app.route('/')
 def mainland():
-
 	return render_template("land.html");
-
-
-
 
 
 # Supportive route to get Service Worker
@@ -37,52 +34,81 @@ def serviceworker():
 @app.route('/video', methods=['POST'])
 def videoland():
 
-	tuu = "noothing"
-	tuu2 = "noothing222"
-	tuu3 = "noothing333"
+	possibleLinks = [
+		'http://youtube.com',
+		'http://www.youtube.com',
+		'https://.youtube.com',
+		'https://www.youtube.com',
+		'http://youtu.be',
+		'http://www.youtu.be',
+		'https://youtu.be',
+		'https://www.youtu.be',
+	]
 
-	if requestflask.method == "POST":
-		tuu = requestflask.form.get("url")
-		tuu2 = requestflask.form.get("text")
-		tuu3 = requestflask.form.get("title")
+	video_url = ""
+	title_pwa = ""
 
-
-
-	video_url = "https://www.youtube.com/watch?v=5ytzbr4SiKE"
-	video_id = returnVideoID(video_url)
-	video_title = returnVideoTitle(video_url)
-
-	fileName = getRandomString() + ".mp3"
-
-	# Settings for downloading
-	ydl_opts = {
-		'forcetitle': True,
-	    'format': 'bestaudio/best',
-	    'postprocessors': [{
-	        'key': 'FFmpegExtractAudio',
-	        'preferredcodec': 'mp3',
-	        'preferredquality': '192',
-	    }],
-	    'noplaylist' : True,
-	    'outtmpl': './' + fileName
-	}
+	# if requestflask.method == "POST":
+	# 	video_url = requestflask.form.get("text")
+	# 	title_pwa = requestflask.form.get("title")
 
 
+	if video_url == "":
+		return render_template("index.html",
+			error = "UrlNotFound")
 
 
-	# Download from youtube
-	# youtube_dl.YoutubeDL(ydl_opts).download(['https://www.youtube.com/watch?v=5ytzbr4SiKE'])
+	else:
 
-	return render_template('index.html', 
-		fileName = fileName,
-		videoUrl = video_url,
-		videoId = video_id,
-		videoTitle = video_title,
-		uri = tuu,
-		uri2 = tuu2,
-		uri3 = tuu3,
+		acceptableLink = False
 
-	)
+		# Get the link provided by the user
+		parsed_uri = urlparse(video_url)
+		urireturned = '{uri.scheme}://{uri.netloc}/'.format(uri=parsed_uri)
+
+		# If link belongs to Youtube
+		if urireturned in possibleLinks or urireturned[:-1] in possibleLinks:
+			acceptableLink = True
+
+		# If the link is not acceptable
+		if not acceptableLink:
+			return render_template("index.html",
+				error = "UrlNotAcceptable",
+				url = urireturned
+			)
+
+
+
+		video_id = returnVideoID(video_url)
+		video_title = returnVideoTitle(video_url)
+
+		fileName = getRandomString() + ".mp3"
+
+		# Settings for downloading
+		ydl_opts = {
+			'forcetitle': True,
+		    'format': 'bestaudio/best',
+		    'postprocessors': [{
+		        'key': 'FFmpegExtractAudio',
+		        'preferredcodec': 'mp3',
+		        'preferredquality': '192',
+		    }],
+		    'noplaylist' : True,
+		    'outtmpl': './' + fileName
+		}
+
+
+
+
+		# Download from youtube
+		# youtube_dl.YoutubeDL(ydl_opts).download(['https://www.youtube.com/watch?v=5ytzbr4SiKE'])
+
+		return render_template('index.html', 
+			fileName = fileName,
+			videoUrl = video_url,
+			videoId = video_id,
+			videoTitle = video_title
+		)
 
 
 # ENDPOINT FOR DOWNLOADING
