@@ -71,7 +71,6 @@ def videoland():
 		# If link belongs to Youtube
 		if urireturned in possibleLinks or urireturned[:-1] in possibleLinks:
 			acceptableLink = True
-			return Response(urireturned)
 
 
 		# If the link is not acceptable
