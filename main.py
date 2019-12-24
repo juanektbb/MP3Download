@@ -66,12 +66,16 @@ def videoland():
 		parsed_uri = urlparse(video_url)
 		urireturned = '{uri.scheme}://{uri.netloc}/'.format(uri=parsed_uri)
 
+		return Response(urireturned)
+
 		# If link belongs to Youtube
 		if urireturned in possibleLinks or urireturned[:-1] in possibleLinks:
 			acceptableLink = True
 
+
 		# If the link is not acceptable
 		if not acceptableLink:
+
 			return render_template("index.html",
 				error = "UrlNotAcceptable",
 				url = urireturned
@@ -82,7 +86,7 @@ def videoland():
 		video_id = returnVideoID(video_url)
 		video_title = returnVideoTitle(video_url)
 
-		
+
 
 		fileName = getRandomString() + ".mp3"
 

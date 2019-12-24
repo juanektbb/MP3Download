@@ -86,6 +86,13 @@
 </style>
 
 
+{% if error is defined %}
+
+ERRRRROOR
+
+{% else %}
+
+
 <h1>{{ videoUrl }}</h1>
 
 <h1>MP3Download</h1>
@@ -117,6 +124,8 @@
     <input type="submit" class="input-button" value="Get MP3">
   </form>
 </div>
+
+{% endif %}
 
 </body>
 </html> 
