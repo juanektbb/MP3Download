@@ -82,7 +82,7 @@ def videoland():
 
 
 
-		video_id = returnVideoID(video_url)
+		video_id = "iddd" #returnVideoID(video_url)
 		video_title = 'testt' #returnVideoTitle(video_url)
 
 
