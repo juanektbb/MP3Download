@@ -17,7 +17,6 @@
   {
     "action": "/video",
     "method": "POST",
-    "enctype": "multipart/form-data",
     "params":
     {
       "title": "title",
