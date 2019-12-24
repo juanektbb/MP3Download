@@ -16,13 +16,12 @@
   "share_target":
   {
     "action": "/video",
-    "method": "POST",
-    "enctype": "multipart/form-data",
+    "method": "GET",
     "params":
     {
       "title": "title",
       "text": "text",
-      "url": "link"
+      "url": "url"
     }
   },
   "start_url": "/",

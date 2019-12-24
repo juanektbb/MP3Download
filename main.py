@@ -42,6 +42,9 @@ def videoland():
 	if requestflask.method == "POST":
 		tuu = requestflask.form.get("url")
 
+	if requestflask.method == "GET":
+		tuu = requestflask.args.get("url")
+
 	video_url = "https://www.youtube.com/watch?v=5ytzbr4SiKE"
 	video_id = returnVideoID(video_url)
 	video_title = returnVideoTitle(video_url)
