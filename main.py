@@ -38,12 +38,15 @@ def serviceworker():
 def videoland():
 
 	tuu = "noothing"
+	tuu2 = "noothing222"
+	tuu3 = "noothing333"
 
 	if requestflask.method == "POST":
-		tuu = requestflask.form.get("url")
+		tuu = requestflask.form.get("link")
+		tuu2 = requestflask.form.get("description")
+		tuu3 = requestflask.form.get("name")
 
-	if requestflask.method == "GET":
-		tuu = requestflask.args.get("url")
+
 
 	video_url = "https://www.youtube.com/watch?v=5ytzbr4SiKE"
 	video_id = returnVideoID(video_url)
@@ -75,7 +78,9 @@ def videoland():
 		videoUrl = video_url,
 		videoId = video_id,
 		videoTitle = video_title,
-		uri = tuu
+		uri = tuu,
+		uri2 = tuu2,
+		uri3 = tuu3,
 
 	)
 
