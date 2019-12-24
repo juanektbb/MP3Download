@@ -42,9 +42,9 @@ def videoland():
 	tuu3 = "noothing333"
 
 	if requestflask.method == "POST":
-		tuu = requestflask.form.get("link")
-		tuu2 = requestflask.form.get("description")
-		tuu3 = requestflask.form.get("name")
+		tuu = requestflask.form.get("url")
+		tuu2 = requestflask.form.get("text")
+		tuu3 = requestflask.form.get("title")
 
 
 
