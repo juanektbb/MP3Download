@@ -31,7 +31,8 @@ def serviceworker():
 
 
 
-@app.route('/video', methods=['POST'])
+# @app.route('/video', methods=['POST'])
+@app.route('/video')
 def videoland():
 
 	possibleLinks = [
@@ -45,12 +46,12 @@ def videoland():
 		'https://www.youtu.be',
 	]
 
-	video_url = ""
+	video_url = "https://youtu.be/bwNV7TAWN3M"
 	title_pwa = ""
 
-	if requestflask.method == "POST":
-		video_url = requestflask.form.get("text")
-		title_pwa = requestflask.form.get("title")
+	# if requestflask.method == "POST":
+	# 	video_url = requestflask.form.get("text")
+	# 	title_pwa = requestflask.form.get("title")
 
 
 	if video_url == "":
@@ -75,6 +76,7 @@ def videoland():
 
 		# If the link is not acceptable
 		if not acceptableLink:
+			print(urireturned)
 			return render_template("index.html",
 				error = "UrlNotAcceptable",
 				url = urireturned
@@ -82,7 +84,7 @@ def videoland():
 
 
 
-		video_id = "iddd" #returnVideoID(video_url)
+		video_id = returnVideoID(video_url)
 		video_title = 'testt' #returnVideoTitle(video_url)
 
 
@@ -114,6 +116,7 @@ def videoland():
 			videoId = video_id,
 			videoTitle = video_title
 		)
+
 
 
 # ENDPOINT FOR DOWNLOADING
@@ -201,10 +204,24 @@ def getRandomString():
 *********************************** """
 # RETURN VIDEO ID
 def returnVideoID(video):
-	# Request video info and parse it 
-	parsed = parse.urlparse(video)
-	video_id = parse_qs(parsed.query)['v'][0]
-	return video_id
+
+	query = urlparse(video)
+	if query.hostname in ('youtu.be', 'www.youtube.be'):
+	    return query.path[1:]
+
+	if query.hostname in ('www.youtube.com', 'youtube.com'):
+		
+	    if query.path == '/watch':
+	        p = parse_qs(query.query)
+	        return p['v'][0]
+
+	    if query.path[:7] == '/embed/':
+	        return query.path.split('/')[2]
+
+	    if query.path[:3] == '/v/':
+	        return query.path.split('/')[2]
+
+	return None
 
 
 # RETURN VIDEO TITLE

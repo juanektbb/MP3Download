@@ -1,8 +1,8 @@
-import eyed3
-from eyed3.id3 import Tag
-from tinytag import TinyTag
+# import eyed3
+# from eyed3.id3 import Tag
+# from tinytag import TinyTag
 
-audio = eyed3.load("./helloWorld.mp3")
+# audio = eyed3.load("./helloWorld.mp3")
 
 # if(audio.tag == None):
 # 	audio.initTag()
@@ -37,6 +37,18 @@ audio = eyed3.load("./helloWorld.mp3")
 # print('Comment %s.' % tag.comment)
 
 
-video = "https://www.youtube.com/watch?v=5ytzbr4SiKE"
+from urllib import request, parse 
+from urllib.parse import parse_qs, urlparse
+
+video = "https://youtube.com/watch?v=5ytzbr4SiKE"
+#video = "https://youtu.be/bwNV7TAWN3M"
+
+# parsed = parse.urlparse(video)
+# video_id = parse_qs(parsed.query)['v'][0]
+
+
+
+
+
 
 
