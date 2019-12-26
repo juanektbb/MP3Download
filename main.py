@@ -43,7 +43,23 @@ def videoland():
 		'http://www.youtu.be',
 		'https://youtu.be',
 		'https://www.youtu.be',
+
+		'youtu.be',
+		'www.youtu.be',
+		'youtube.com',
+		'www.youtube.com',
+
 	]
+
+
+
+
+
+
+
+
+
+
 
 	video_url = "https://youtu.be/bwNV7TAWN3M"
 	title_pwa = ""
@@ -62,29 +78,25 @@ def videoland():
 
 		acceptableLink = False
 
-		# Get the link provided by the user
-		parsed_uri = urlparse(video_url)
-		urireturned = '{uri.scheme}://{uri.netloc}/'.format(uri=parsed_uri)
-
 
 
 		# If link belongs to Youtube
-		if urireturned in possibleLinks or urireturned[:-1] in possibleLinks:
+		query = urlparse(video)
+		if query.hostname in possibleLinks:
 			acceptableLink = True
 
 
 		# If the link is not acceptable
 		if not acceptableLink:
-			print(urireturned)
 			return render_template("index.html",
 				error = "UrlNotAcceptable",
-				url = urireturned
+				url = query.hostname
 			)
 
 
 
 		video_id = returnVideoID(video_url)
-		video_title = 'testt' #returnVideoTitle(video_url)
+		video_title = returnVideoTitle(video_url)
 
 
 
@@ -205,7 +217,7 @@ def getRandomString():
 def returnVideoID(video):
 
 	query = urlparse(video)
-	if query.hostname in ('youtu.be', 'www.youtube.be'):
+	if query.hostname in ('youtu.be', 'www.youtu.be'):
 	    return query.path[1:]
 
 	if query.hostname in ('www.youtube.com', 'youtube.com'):
