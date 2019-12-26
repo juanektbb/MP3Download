@@ -81,7 +81,7 @@ def videoland():
 
 
 		# If link belongs to Youtube
-		query = urlparse(video)
+		query = urlparse(video_url)
 		if query.hostname in possibleLinks:
 			acceptableLink = True
 
