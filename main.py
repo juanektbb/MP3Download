@@ -35,69 +35,43 @@ def serviceworker():
 def videoland():
 
 	possibleLinks = [
-		'http://youtube.com',
-		'http://www.youtube.com',
-		'https://.youtube.com',
-		'https://www.youtube.com',
-		'http://youtu.be',
-		'http://www.youtu.be',
-		'https://youtu.be',
-		'https://www.youtu.be',
-
 		'youtu.be',
 		'www.youtu.be',
 		'youtube.com',
-		'www.youtube.com',
-
+		'www.youtube.com'
 	]
 
-
-
-
-
-
-
-
-
-
-
-	video_url = "https://youtu.be/bwNV7TAWN3M"
+	video_url = ""
 	title_pwa = ""
 
+	# Get data from the user
 	if requestflask.method == "POST":
 		video_url = requestflask.form.get("text")
 		title_pwa = requestflask.form.get("title")
 
-
+	# Render not found URL
 	if video_url == "":
 		return render_template("index.html",
 			error = "UrlNotFound")
 
-
 	else:
 
 		acceptableLink = False
-
-
 
 		# If link belongs to Youtube
 		query = urlparse(video_url)
 		if query.hostname in possibleLinks:
 			acceptableLink = True
 
-
-		# If the link is not acceptable
+		# Render not acceptable URL
 		if not acceptableLink:
 			return render_template("index.html",
 				error = "UrlNotAcceptable",
-				url = query.hostname
-			)
+				url = query.hostname)
 
-
-
+		
 		video_id = returnVideoID(video_url)
 		video_title = returnVideoTitle(video_url)
-
 
 
 		fileName = getRandomString() + ".mp3"
