@@ -31,8 +31,7 @@ def serviceworker():
 
 
 
-# @app.route('/video', methods=['POST'])
-@app.route('/video')
+@app.route('/video', methods=['POST'])
 def videoland():
 
 	possibleLinks = [
@@ -49,9 +48,9 @@ def videoland():
 	video_url = "https://youtu.be/bwNV7TAWN3M"
 	title_pwa = ""
 
-	# if requestflask.method == "POST":
-	# 	video_url = requestflask.form.get("text")
-	# 	title_pwa = requestflask.form.get("title")
+	if requestflask.method == "POST":
+		video_url = requestflask.form.get("text")
+		title_pwa = requestflask.form.get("title")
 
 
 	if video_url == "":
