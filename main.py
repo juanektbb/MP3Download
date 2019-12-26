@@ -73,7 +73,6 @@ def videoland():
 		video_id = returnVideoID(video_url)
 		video_title = returnVideoTitle(video_url)
 
-
 		fileName = getRandomString() + ".mp3"
 
 		# Settings for downloading
@@ -93,7 +92,7 @@ def videoland():
 
 
 		# Download from youtube
-		# youtube_dl.YoutubeDL(ydl_opts).download(['https://www.youtube.com/watch?v=5ytzbr4SiKE'])
+		youtube_dl.YoutubeDL(ydl_opts).download(['https://www.youtube.com/watch?v=5ytzbr4SiKE'])
 
 		return render_template('index.html', 
 			fileName = fileName,
@@ -137,7 +136,7 @@ def download():
 
 		os.rename(fileName, songTitle+".mp3")
 
-		send_file(songTitle+".mp3", as_attachment=True)
+		return send_file(songTitle+".mp3", as_attachment=True)
 
 	except IOError:
 		return Response("Wrong")
