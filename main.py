@@ -74,7 +74,7 @@ def videoland():
 		# Render not acceptable URL
 		if not acceptableLink:
 			return render_template("index.html",
-				error = "UrlNotAcceptable",
+				error = "UrlNotAcceptable -> " + video_url,
 				url = query.hostname)
 
 		
