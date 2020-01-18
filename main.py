@@ -16,6 +16,16 @@ from jinja2 import Template
 
 app = Flask(__name__)
 
+
+@app.route('/testingyeah')
+def mainland():
+
+	var = "variable"
+
+
+	return Response(var);
+
+
 # 
 @app.route('/')
 def mainland():
