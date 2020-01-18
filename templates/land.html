@@ -1,15 +1,16 @@
 <!DOCUMENT html>
 <html>
 	<head>
-		<title>PWD Share</title>
+		<title>Get MP3Downloader</title>
+		<link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}"/>
 		
 		<script>
 			console.log("land");
-			
-			if ('serviceWorker' in navigator) {
-			    navigator.serviceWorker.register("../sw.js")
-			      .then(function(reg){
+
+			if('serviceWorker' in navigator){
+			    navigator.serviceWorker.register("../sw.js").then(function(reg){
 			        console.log("Service worker registered.");
+
 			     }).catch(function(err) {
 			        console.log("Service worker not registered. This happened:", err)
 			    });
@@ -26,6 +27,8 @@
 
 		
 		<h1>Test</h1>
+
+
 	</body>
 </html>
 

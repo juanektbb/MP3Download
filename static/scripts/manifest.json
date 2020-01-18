@@ -1,6 +1,8 @@
 {
+  "name": "MP3Downloader",
   "short_name": "MP3Downloader",
-  "name": "Web Target Sharing Demo",
+  "description": "Download any Youtube video as MP3 file",
+
   "icons": [
     {
       "src": "../images/large.png",
@@ -13,6 +15,7 @@
       "sizes": "310x310"
     }
   ],
+
   "share_target":
   {
     "action": "/video",
@@ -25,6 +28,7 @@
       "url": "link"
     }
   },
+
   "start_url": "/",
   "background_color": "#ffffff",
   "display": "standalone",
