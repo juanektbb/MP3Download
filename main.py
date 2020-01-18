@@ -43,9 +43,9 @@ app = Flask(__name__)
 
 
 #Supportive route to get Service Worker
-@app.route('/sw.js', methods=['GET'])
-def serviceworker():
-    return app.send_static_file('service-worker.js')
+# @app.route('/sw.js', methods=['GET'])
+# def serviceworker():
+#     return app.send_static_file('service-worker.js')
 
 
 
