@@ -61,75 +61,75 @@ def mainland():
 
 
 
-# @app.route('/video', methods=['POST'])
-# def videoland():
+@app.route('/video', methods=['POST'])
+def videoland():
 
-# 	possibleLinks = [
-# 		'youtu.be',
-# 		'www.youtu.be',
-# 		'youtube.com',
-# 		'www.youtube.com'
-# 	]
+	possibleLinks = [
+		'youtu.be',
+		'www.youtu.be',
+		'youtube.com',
+		'www.youtube.com'
+	]
 
-# 	video_url = ""
-# 	title_pwa = ""
+	video_url = ""
+	title_pwa = ""
 
-# 	# Get data from the user
-# 	if requestflask.method == "POST":
-# 		video_url = requestflask.form.get("text")
-# 		title_pwa = requestflask.form.get("title")
+	# Get data from the user
+	if requestflask.method == "POST":
+		video_url = requestflask.form.get("text")
+		title_pwa = requestflask.form.get("title")
 
-# 	# Render not found URL
-# 	if video_url == "":
-# 		return render_template("index.html",
-# 			error = "UrlNotFound")
+	# Render not found URL
+	if video_url == "":
+		return render_template("index.html",
+			error = "UrlNotFound")
 
-# 	else:
+	else:
 
-# 		acceptableLink = False
+		acceptableLink = False
 
-# 		# If link belongs to Youtube
-# 		query = urlparse(video_url)
-# 		if query.hostname in possibleLinks:
-# 			acceptableLink = True
+		# If link belongs to Youtube
+		query = urlparse(video_url)
+		if query.hostname in possibleLinks:
+			acceptableLink = True
 
-# 		# Render not acceptable URL
-# 		if not acceptableLink:
-# 			return render_template("index.html",
-# 				error = "UrlNotAcceptable",
-# 				url = query.hostname)
+		# Render not acceptable URL
+		if not acceptableLink:
+			return render_template("index.html",
+				error = "UrlNotAcceptable",
+				url = query.hostname)
 
 		
-# 		video_id = returnVideoID(video_url)
-# 		video_title = returnVideoTitle(video_url)
+		video_id = returnVideoID(video_url)
+		video_title = returnVideoTitle(video_url)
 
-# 		fileName = getRandomString() + ".mp3"
+		fileName = getRandomString() + ".mp3"
 
-# 		# Settings for downloading
-# 		ydl_opts = {
-# 			'forcetitle': True,
-# 		    'format': 'bestaudio/best',
-# 		    'postprocessors': [{
-# 		        'key': 'FFmpegExtractAudio',
-# 		        'preferredcodec': 'mp3',
-# 		        'preferredquality': '192',
-# 		    }],
-# 		    'noplaylist' : True,
-# 		    'outtmpl': './' + fileName
-# 		}
-
-
+		# Settings for downloading
+		ydl_opts = {
+			'forcetitle': True,
+		    'format': 'bestaudio/best',
+		    'postprocessors': [{
+		        'key': 'FFmpegExtractAudio',
+		        'preferredcodec': 'mp3',
+		        'preferredquality': '192',
+		    }],
+		    'noplaylist' : True,
+		    'outtmpl': './' + fileName
+		}
 
 
-# 		# Download from youtube
-# 		#youtube_dl.YoutubeDL(ydl_opts).download(['https://www.youtube.com/watch?v=5ytzbr4SiKE'])
 
-# 		return render_template('index.html', 
-# 			fileName = fileName,
-# 			videoUrl = video_url,
-# 			videoId = video_id,
-# 			videoTitle = video_title
-# 		)
+
+		# Download from youtube
+		#youtube_dl.YoutubeDL(ydl_opts).download(['https://www.youtube.com/watch?v=5ytzbr4SiKE'])
+
+		return render_template('index.html', 
+			fileName = fileName,
+			videoUrl = video_url,
+			videoId = video_id,
+			videoTitle = video_title
+		)
 
 
 
