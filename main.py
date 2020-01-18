@@ -16,46 +16,36 @@ from jinja2 import Template
 
 app = Flask(__name__)
 
-
-@app.route('/testingyeah')
+# 
+@app.route('/')
 def mainland():
 
-	var = "variable"
-
-
-	return Response(var);
-
-
-# 
-# @app.route('/')
-# def mainland():
-
-# 	# Settings for downloading
-# 	ydl_opts = {
-# 		'forcetitle': True,
-# 	    'format': 'bestaudio/best',
-# 	    'postprocessors': [{
-# 	        'key': 'FFmpegExtractAudio',
-# 	        'preferredcodec': 'mp3',
-# 	        'preferredquality': '192',
-# 	    }],
-# 	    'noplaylist' : True,
-# 	    'outtmpl': './' + "fileName.mp3"
-# 	}
+	# Settings for downloading
+	ydl_opts = {
+		'forcetitle': True,
+	    'format': 'bestaudio/best',
+	    'postprocessors': [{
+	        'key': 'FFmpegExtractAudio',
+	        'preferredcodec': 'mp3',
+	        'preferredquality': '192',
+	    }],
+	    'noplaylist' : True,
+	    'outtmpl': './' + "fileName.mp3"
+	}
 
 
 
 
-# 	# Download from youtube
-# 	youtube_dl.YoutubeDL(ydl_opts).download(['https://www.youtube.com/watch?v=5ytzbr4SiKE'])
+	# Download from youtube
+	youtube_dl.YoutubeDL(ydl_opts).download(['https://www.youtube.com/watch?v=5ytzbr4SiKE'])
 
-# 	return render_template("land.html");
+	return render_template("land.html");
 
 
-# # Supportive route to get Service Worker
-# @app.route('/sw.js', methods=['GET'])
-# def serviceworker():
-#     return app.send_static_file('service-worker.js')
+# Supportive route to get Service Worker
+@app.route('/sw.js', methods=['GET'])
+def serviceworker():
+    return app.send_static_file('service-worker.js')
 
 
 
