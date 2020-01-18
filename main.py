@@ -37,7 +37,7 @@ def mainland():
 
 
 	# Download from youtube
-	youtube_dl.YoutubeDL(ydl_opts).download(['https://www.youtube.com/watch?v=5ytzbr4SiKE'])
+	#youtube_dl.YoutubeDL(ydl_opts).download(['https://www.youtube.com/watch?v=5ytzbr4SiKE'])
 
 	return render_template("land.html");
 
