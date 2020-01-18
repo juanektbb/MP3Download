@@ -42,10 +42,18 @@ app = Flask(__name__)
 # 	return render_template("land.html");
 
 
-#Supportive route to get Service Worker
-# @app.route('/sw.js', methods=['GET'])
-# def serviceworker():
-#     return app.send_static_file('service-worker.js')
+
+# Supportive route to get Service Worker
+@app.route('/test')
+def landing():
+    return Response("Wrong")
+
+
+
+# Supportive route to get Service Worker
+@app.route('/sw.js', methods=['GET'])
+def serviceworker():
+    return app.send_static_file('service-worker.js')
 
 
 
