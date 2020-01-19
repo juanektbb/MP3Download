@@ -52,10 +52,14 @@ def videoland():
 	video_url = ""
 	title_pwa = ""
 
+	video_url1 = "abc"
+
 	# Get data from the user
 	if requestflask.method == "POST":
 		video_url = requestflask.form.get("text")
+		video_url1 = requestflask.form.get("text")
 		title_pwa = requestflask.form.get("title")
+
 
 	# Render not found URL
 	if video_url == "":
@@ -74,7 +78,9 @@ def videoland():
 		# Render not acceptable URL
 		if not acceptableLink:
 			return render_template("index.html",
-				error = "UrlNotAcceptable",
+				error = video_url,
+				error1 = video_url1,
+				error2 = query,
 				url = query.hostname)
 
 		
