@@ -1,135 +1,98 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="https://fonts.googleapis.com/css?family=Arvo|Roboto&display=swap" rel="stylesheet"> 
 
 <title>MP3Download</title>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Roboto&display=swap" rel="stylesheet"> 
+<link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}"/>
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <script src="{{ url_for('static', filename='scripts/service-worker.js') }}"></script>
-
-
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
 </head>
 <body>
+<article class="article-index">
 
+    <h1>MP3Download</h1>
+    <h4>Download <span>Youtube</span> videos as MP3</h4>
 
-<style>
-  *{
-    box-sizing: border-box;
-  }
-  body{
-    font-family: 'Roboto', sans-serif;
-    color: white;
-    background-color: #25293b;
+    <hr>
 
-  }
-  h1{
-    font-family: 'Arvo', serif;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 0;
-  }
-  h5{
-    text-align: center;
-    margin-top: 0;
-  }
-  h5 span{
-    color: #c90000;
-  }
-  .preview-box{
-    width: 300px;
-    margin: 40px auto 10px;
-  }
-  .preview-box img{
-    width: 100%;
-    border: 1px #c5ced1 solid;
-  }
-  .preview-box p{
-    text-align: center;
-    font-size: 12px;
-    color: #c5ced1;
-  }
+    <div class="preview-box">
+      <img src="https://img.youtube.com/vi/{{ videoId }}/0.jpg">
+      <p>{{ videoTitle }}</p>  
+    </div>
 
+    <div class="form-box">
+        <form action="" method="" id="songForm">
+            <input type="hidden" name="fileName" value="{{ fileName }}">
+            <input type="hidden" name="videoUrl" value="{{ videoUrl }}">
+            <input type="hidden" name="videoId" value="{{ videoId }}">
 
-  .form-box{
-    width: 300px;
-    margin: 40px auto;
-    text-align: center;
-  }
+            <div class="title-input">Title</div>
+            <div class="input-box">
+              <input type="text" name="songTitle" placeholder="Title" value="{{ videoTitle[:40] }}" maxlength="50">
+            </div>
 
+            <div class="title-input">Artist</div>
+            <div class="input-box">
+              <input type="text" name="songArtist" placeholder="Artist" maxlength="50">
+            </div>
+              
+            <div class="title-input">Genre</div>
+            <div class="input-box">
+              <input type="text" name="songGenre" placeholder="Genre" maxlength="50">
+            </div>
 
-  .input-box{
-    margin-bottom: 12px;
-  }
+            <div class="title-input">Icon</div>
+            <div class="input-box input-icons">
+                <div class="input-box-item"> 
+                    <label class="container">
+                        <input type="radio" checked="checked" name="songIcon" value="icon-mp3d">
+                        <span class="checkmark">
+                            <img src="{{ url_for('static', filename='images/large.png') }}">
+                        </span>
+                    </label>
+                </div>  
 
-  .input-box input{
-    width: 100%;
-    border-radius: 2px;
-    border: #b3b3b3 solid 1px;
-    padding: 5px;
-  }
+                <div class="input-box-item">  
+                    <label class="container">
+                        <input type="radio" name="songIcon" value="icon-yt">
+                        <span class="checkmark">
+                            <img src="https://img.youtube.com/vi/{{ videoId }}/0.jpg">
+                        </span>
+                    </label>
+                </div>  
+            </div>
 
-  .input-button{
-    width: 100px;
-    margin: 20px auto 0;
-    background-color: #52ab4f;
-    padding: 8px;
-    border: none;
-    border-radius: 3px;
-    color: white;
-    cursor: pointer;
-  }
-  .input-button:hover{
-    background-color: #3b7a43;
-  }
-</style>
+            <input type="submit" class="input-button" value="Get MP3" id="submit-button">
 
+            <div id="submit-loader">
+                <img src="{{ url_for('static', filename='images/loader.gif') }}">
+            </div>
 
-{% if error is defined %}
+            <div id="submit-after">
+                <h4>Your MP3 was downloaded</h4>
+                <button type="submit" form="songForm">Download again</button>
+            </div>
 
-{{ error }} - Errorrrr
-<h1>{{ url }}</h1>
+        </form>
+    </div>
 
-{% else %}
-
-
-<h1>{{ videoUrl }}</h1>
-<h1>{{ videoId }}</h1>
-
-<h1>MP3Download</h1>
-<h5>Download any <span>Youtube</span> video as .mp3</h5>
-
-<div class="preview-box">
-  <img src="http://img.youtube.com/vi/{{ videoId }}/maxresdefault.jpg">
-  <p>{{ videoTitle }}</p>  
+<div class="errors-container">
+    Report any errors: <br>
+    <a href="mailto:inf.juandiaz@gmail.com">inf.juandiaz@gmail.com</a>
 </div>
 
+<!-- Hidden form to download -->
+<form action="/trigger" method="POST" id="superform">
+    <input type="hidden" name="superInput" id="superinput">
+</form>
 
-
-<div class="form-box">
-  <form action="/download" method="POST">
-    <input type="hidden" name="fileName" value="{{ fileName }}">
-
-    <div class="input-box">
-      <input type="text" name="songTitle" placeholder="Title">
-    </div>
-
-    <div class="input-box">
-      <input type="text" name="songArtist" placeholder="Artist">
-    </div>
-      
-    <div class="input-box">
-      <input type="text" name="songGenre" placeholder="Genre">
-    </div>
-
-    <input type="submit" class="input-button" value="Get MP3">
-  </form>
-</div>
-
-{% endif %}
-
+</article>
 </body>
 </html> 
 
-
+<script src="{{ url_for('static', filename='scripts/main.js') }}"></script>

@@ -1,61 +1,54 @@
-<!DOCUMENT html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Get MP3Downloader</title>
-		<link href="https://fonts.googleapis.com/css?family=Arvo|Roboto&display=swap" rel="stylesheet"> 
-		<link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}"/>
-		
-		<script>
-			console.log("land");
+<head>
 
-			if('serviceWorker' in navigator){
-			    navigator.serviceWorker.register("../sw.js").then(function(reg){
-			        console.log("Service worker registered.");
+<title>Get MP3Downloader</title>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Roboto&display=swap" rel="stylesheet"> 
+<link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}"/>
 
-			     }).catch(function(err) {
-			        console.log("Service worker not registered. This happened:", err)
-			    });
-			 }
-		</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="manifest" href="{{ url_for('static', filename='scripts/manifest.json') }}">
+<script>
+if('serviceWorker' in navigator){
+    navigator.serviceWorker.register("../sw.js").then(function(reg){
+        console.log("Service worker registered.");
+     }).catch(function(err){
+        console.log("Service worker not registered. This happened:", err)
+    });
+ }
+</script>
 
-	</head>
-	<body>
+<link rel="manifest" href="{{ url_for('static', filename='scripts/manifest.json') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
-		<style>
-		  *{
-		    box-sizing: border-box;
-		  }
-		  body{
-		    font-family: 'Roboto', sans-serif;
-		    color: white;
-		    background-color: #25293b;
-		  }
-		  h1, h4{
-		    font-family: 'Arvo', serif;
-		    font-weight: bold;
-		    text-align: center;
-		    margin-bottom: 0;
-		  }
+</head>
+<body>
+<article class="article-land">
 
+	<h1>MP3Download</h1>
+	<h4>Download <span>Youtube</span> videos as MP3</h4>
 
+	<hr>
 
-		  .logo{
-		  	width: 100px;
-		  	margin: 0 auto;
-		  }
+	<div class="add-container">
+		<button id="add-button">Download it now</button>
+	</div>
 
-		</style>
-
-
-		
-		<h1>MP3 Downloader</h1>
-		<h4>Download any Youtube video as MP3 file</h4>
-
+	<div class="logo-container">
 		<img src="{{ url_for('static', filename='images/large.png') }}" class="logo">
+		<p>
+			Version: 1.0 <br>
+			Release: 08/02/2020
+		</p>
+	</div>
 
+	<div class="errors-container">
+		Report any errors: <br>
+		<a href="mailto:inf.juandiaz@gmail.com">inf.juandiaz@gmail.com</a>
+	</div>
 
-	</body>
+</article>
+</body>
 </html>
 
+<script src="{{ url_for('static', filename='scripts/a2hs-chrome.js') }}"></script>

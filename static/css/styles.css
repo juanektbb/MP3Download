@@ -1,0 +1,215 @@
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+body{
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	background-color: #25293b;
+	padding-top: 20px;
+}
+h1, h4{
+	font-family: 'Arvo', serif;
+	font-weight: bold;
+	text-align: center;
+	margin: 0px auto 5px;
+}
+h4{
+	margin-bottom: 0;
+}
+h4 span{
+	color: #fe0159;
+}
+hr{
+	width: 320px;
+	margin: 10px auto;
+	border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+}
+
+/******************
+	LOGO (MAIN) 
+******************/
+.logo-container{
+	width: 100%;
+	text-align: center;
+}
+.logo-container .logo{
+	width: 120px;
+	margin: 20px auto 8px;
+	background-color: #fff;
+	border: 1px solid #fff;
+	border-radius: 5px;
+}
+.logo-container p{
+	font-size: 10px;
+}
+.errors-container{
+	margin: 30px auto 5px;
+	line-height: 20px;
+	font-size: 14px;
+	text-align: center;
+}
+.errors-container a, .errors-container a:visited, .errors-container a:focus{
+	color: #fe0159;
+	text-decoration: none;
+}
+
+/* ADD TO HOME SCREEN */
+.add-container{
+	text-align: center;
+	width: 300px;
+	margin: 0 auto;
+}
+#add-button{
+	margin: 30px auto 25px;
+	background-color: #52ab4f;
+	border: none;
+	min-width: 180px;
+	padding: 10px;
+	padding: 15px;
+	font-size: 16px;
+	border-radius: 3px;
+	color: white;
+	cursor: pointer;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#add-button:hover{
+	background-color: #7dc97b;
+}
+
+/***********************
+		DOWNLOAD
+***********************/
+.preview-box{
+	width: 300px;
+	margin: 30px auto 10px;
+}
+.preview-box img{
+	width: 100%;
+	border: 1px #c5ced1 solid;
+}
+.preview-box p{
+	text-align: center;
+	font-size: 12px;
+	color: #c5ced1;
+}
+
+/* FORM FIELDS */
+.form-box{
+	width: 300px;
+	margin: 25px auto;
+	text-align: center;
+}
+.input-box{
+	margin-bottom: 10px;
+}
+.input-box input{
+	width: 100%;
+	border-radius: 3px;
+	border: #b3b3b3 solid 1px;
+	padding: 8px;
+}
+.title-input{
+	text-align: left;
+	font-size: 10px;
+	color: #c5ced1;
+	margin-bottom: 1px
+}
+.align-center{
+	text-align: center;
+}
+
+/* ICONS */
+.container{
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 65px;
+    height: 65px;
+}
+.container input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    width: 10px;
+}
+.checkmark{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 5px; 
+}
+.checkmark img{
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    border-radius: 5px;
+    object-fit: cover;
+    border: 1px solid #fff;
+}
+.container input:checked ~ .checkmark img{
+    border: #52ab4f 3px solid;
+}
+.checkmark:after{
+    content: "";
+    position: absolute;
+    display: none;
+}
+.input-icons{
+    display: flex;
+    justify-content: flex-start;
+    padding: 0px 0px 5px 0px;
+}
+.input-box-item{
+    flex-basis: 60px;
+    margin: 0 10px 0px 0px;
+}
+
+/* EXPORT */
+.input-button{
+	width: 100%;
+	font-size: 16px;
+	margin: 0 auto 0;
+	background-color: #52ab4f;
+	padding: 15px;
+	border: none;
+	border-radius: 3px;
+	color: white;
+	cursor: pointer;
+}
+.input-button:hover{
+	background-color: #7dc97b;
+}
+
+/* LOADER AND AFTER SUBMISSION */
+#submit-loader{
+    display: none;
+    text-align: center;
+}
+#submit-loader img{
+    height: 49px;
+}
+#submit-after{
+    display: none;
+    border: dashed 2px #aaa;
+    padding: 4px;
+    border-radius: 3px;
+}
+#submit-after h4{
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+#submit-after button{
+    border: none;
+    background: transparent;
+    color: #52ab4f;
+    cursor: pointer;
+}
+#submit-after button:hover{
+    color: #7dc97b;
+}
