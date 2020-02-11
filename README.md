@@ -8,19 +8,28 @@ Note: It may be available for other browsers if they allow to install PWA as app
 
 
 ## Installation
-1. Go to: https://mp3d.xyz
+Go to: https://mp3d.xyz
 
-2. ![](static/images/instructions/1.jpg)
-Click on 'Download it now'
 
-3. ![](static/images/instructions/2.jpg)
-Add the application (Not as shortcut)
+#### Click on 'Download it now'
+<img src="static/images/instructions/1.jpg" width="250">
 
-4. ![](static/images/instructions/3.jpg)
-Go to a Youtube video you want to download and click 'Share'
+<br>
 
-5. ![](static/images/instructions/4.jpg)
-Choose to share with MP3Download
+#### Add the application (Not as shortcut)
+<img src="static/images/instructions/2.jpg" width="250">
 
-6. ![](static/images/instructions/5.jpg)
-Use the fields to choose tags (optional) and click 'Get MP3'
+<br>
+
+#### Go to a Youtube video you want to download and click 'Share'
+<img src="static/images/instructions/3.jpg" width="250">
+
+<br>
+
+#### Choose to share with MP3Download
+<img src="static/images/instructions/4.jpg" width="250">
+
+<br>
+
+#### Use the fields to choose tags (optional) and click 'Get MP3'
+<img src="static/images/instructions/2.jpg" width="250">
