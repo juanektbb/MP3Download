@@ -1,3 +1,6 @@
+sudo apt install ffmpeg
+sudo apt install -y mongodb
+
 # MP3Download
 MP3Download is a Progressive Web App that allows you to download any Youtube video as MP3 file
 
