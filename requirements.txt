@@ -28,7 +28,7 @@ SecretStorage==2.3.1
 simple-geoip==0.1.0
 six==1.14.0
 stevedore==1.31.0
-supervisor==3.3.1
+supervisor==3.3.3
 urllib3==1.25.8
 virtualenv==16.7.9
 virtualenv-clone==0.5.3
